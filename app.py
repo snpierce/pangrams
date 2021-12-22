@@ -21,10 +21,10 @@ def after_request(response):
     response.headers["Pragma"] = "no-cache"
     return response
 
-@app.route("/generate", methods=["GET", "POST"])
-def generate():
 
-    render_template("generate.html")
+@app.route("/")
+def generate():
+    render_template("index.html")
 
 
 if __name__ == '__main__':

@@ -1,6 +1,6 @@
 from flask import Flask, redirect, render_template, request, session, url_for, g
 from flask_session import Session
-from helpers import load_words
+from helpers import load_words, search_apology
 
 # Configure application
 app = Flask(__name__)
@@ -23,10 +23,27 @@ def after_request(response):
 
 
 @app.route("/")
+def home():
+    return render_template("index.html")
+
+
+@app.route("/solve", methods=["GET", "POST"])
+def solve():
+    if request.method == "POST":
+        search = request.form.get("pangram")
+
+        if len(search) != 7:
+            return search_apology("Incorrect amount of letters.")
+
+    else:
+        pangrams = []
+        return render_template("solve.html", pangrams=pangrams)
+
+
+@app.route("/generate")
 def generate():
-    render_template("index.html")
+    return render_template("generate.html")
 
 
 if __name__ == '__main__':
     english_words = load_words()
-    

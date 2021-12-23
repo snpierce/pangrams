@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Main
+{% endblock %}
+
+{% block main %}
+
+    <div class="container-fluid justify-conent-center">
+        <form action="/solve" method="post">
+            <input class="btn-outline-secondary" type="text" name="pangram" placeholder="enter letters">
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="submit">solve</button>
+            </div>
+        </form>
+    </div>
+
+    <table class="table-borderless">
+        <tr>
+            <th>Pangrams</th>
+        </tr>
+        <tr>
+            {% for pangram in pangrams %}
+            <td> </td>
+            {% endfor %}
+        </tr>
+    </table>
+    
+{% endblock %}

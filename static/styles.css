@@ -1,0 +1,17 @@
+a, p, .nav-link, input, .btn {
+    font-family: "Optima", serif;
+    color: lightslategray;
+}
+
+.container-fluid {
+    padding: 30px;
+}
+
+.active {
+    color: cornflowerblue;
+}
+
+input {
+    padding: 5px;
+    margin: 5px;
+}

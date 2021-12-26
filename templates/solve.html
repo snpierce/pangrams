@@ -19,11 +19,11 @@
         <tr>
             <th>Pangrams</th>
         </tr>
-        <tr>
             {% for pangram in pangrams %}
-            <td> </td>
-            {% endfor %}
+        <tr>
+            <td>{{ pangram }}</td>
         </tr>
+            {% endfor %}
     </table>
     
 {% endblock %}

@@ -13,3 +13,11 @@ def load_words():
 def search_apology(message, code=400):
     return render_template("search_apology.html", message=message), code
 
+def check_distinct(search):
+    abcs = []
+    for letter in search:
+        if letter not in abcs:
+            abcs.append(letter)
+        else:
+            return False
+    return True

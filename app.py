@@ -1,6 +1,6 @@
 from flask import Flask, redirect, render_template, request, session, url_for, g
 from flask_session import Session
-from helpers import load_words, search_apology
+from helpers import load_words, search_apology, check_distinct
 
 # Configure application
 app = Flask(__name__)
@@ -34,7 +34,12 @@ def solve():
 
         if len(search) != 7:
             return search_apology("Incorrect amount of letters.")
+        else:
+            check = check_distinct(search)
+            if check == False:
+                return search_apology("Please enter unique letters.")
 
+        
     else:
         pangrams = []
         return render_template("solve.html", pangrams=pangrams)

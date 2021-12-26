@@ -6,7 +6,7 @@
 
 {% block main %}
     <div class="container-fluid justify-conent-center">
-        <form action="/" method="post">
+        <form action="/solve" method="post">
             <input class="btn-outline-secondary" type="text" name="pangram" placeholder="enter letters">
             <div class="input-group-append">
                 <button class="btn btn-outline-secondary" type="submit">solve</button>
@@ -14,5 +14,5 @@
         </form>
     </div>
     <br><br>
-    <p>Welcome to the first, only, and best pangram generator and solver.</p>
+    <p>{{ message }}</p>
 {% endblock %}

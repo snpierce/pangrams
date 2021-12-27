@@ -15,3 +15,12 @@ input {
     padding: 5px;
     margin: 5px;
 }
+
+.row {
+    display: flex;
+  }
+  
+.column {
+    flex: 30%;
+    padding: 5px;
+  }

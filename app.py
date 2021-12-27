@@ -1,6 +1,6 @@
 from flask import Flask, redirect, render_template, request, session, url_for, g
 from flask_session import Session
-from helpers import search_apology, find_words
+from helpers import search_apology, find_words, clean_list
 
 # Configure application
 app = Flask(__name__)
@@ -29,19 +29,29 @@ def home():
 
 @app.route("/solve", methods=["GET", "POST"])
 def solve():
+    
     if request.method == "POST":
-        search = request.form.get("pangram")
+        search = (request.form.get("pangram")).lower()
 
         if len(search) != 7:
             return search_apology("Incorrect amount of letters.")
-        else:
-            results = find_words(search)
+
+        abcs = []
+        for letter in search:
+            if letter not in abcs:
+                abcs.append(letter)
+            else:
+                return search_apology("Please enter unique letters.")
         
-        return render_template("solve.html", pangrams=results)
+        results = find_words(search, abcs)
         
+        return clean_list(results, abcs)
+
     else:
+        perf_pangrams = []
         pangrams = []
-        return render_template("solve.html", pangrams=pangrams)
+        words = []
+        return render_template("solve.html", perf_pangrams=perf_pangrams, pangrams=pangrams, words=words)
 
 
 @app.route("/generate")

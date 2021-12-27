@@ -13,13 +13,7 @@ def load_words():
 def search_apology(message, code=400):
     return render_template("search_apology.html", message=message), code
 
-def find_words(search):
-    abcs = []
-    for letter in search:
-        if letter not in abcs:
-            abcs.append(letter)
-        else:
-            return search_apology("Please enter unique letters.")
+def find_words(search, abcs):
     
     dictionary = load_words()
     search_results = []
@@ -33,8 +27,25 @@ def find_words(search):
             continue
         search_results.append(word)
 
-    clean_list(search_results, abcs)
+    return search_results
 
+# sort by word length, alphabetize, and find pangrams
 def clean_list(results, letters):
-    return 
+    perf_pangrams = []
+    pangrams = []
 
+    for word in results:
+        if sorted(letters) == sorted(word):
+            perf_pangrams.append(word)
+            results.remove(word)
+        elif sorted(letters) == sorted(remove_dup(word)):
+            pangrams.append(word)
+            results.remove(word)
+    
+    results.sort()
+    results = sorted(results, key=len)
+
+    return render_template("solve.html", perf_pangrams=perf_pangrams, pangrams=pangrams, words=results)
+
+def remove_dup(str): 
+    return "".join(set(str))

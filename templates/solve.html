@@ -15,15 +15,44 @@
         </form>
     </div>
 
-    <table class="table-borderless">
-        <tr>
-            <th>Pangrams</th>
-        </tr>
-            {% for pangram in pangrams %}
-        <tr>
-            <td>{{ pangram }}</td>
-        </tr>
-            {% endfor %}
-    </table>
-    
+    <div class="row">
+        <div class="column">
+            <table class="table-borderless">
+                <tr>
+                    <th>Perfect Pangrams</th>
+
+                </tr>
+                    {% for word in perf_pangrams %}
+                <tr>
+                    <td>{{ word }}</td>
+                </tr>
+                    {% endfor %}
+            </table>
+        </div>
+        <div class="column">
+            <table class="table-borderless">
+                <tr>
+                    <th>Pangrams</th>
+                </tr>
+                    {% for word in pangrams %}
+                <tr>
+                    <td>{{ word }}</td>
+                </tr>
+                    {% endfor %}
+            </table>
+        </div>
+        <div class="column">
+            <table class="table-borderless">
+                <tr>
+                    <th>Words</th>
+
+                </tr>
+                    {% for word in words %}
+                <tr>
+                    <td>{{ word }}</td>
+                </tr>
+                    {% endfor %}
+            </table>
+        </div>
+    </div>
 {% endblock %}

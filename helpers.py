@@ -30,8 +30,12 @@ def generate_apology(message, code=400):
     points = info[1]
     midletter = info[2]
     max_p = info[3]
+    
+    guessed = []
+    for row in cur.execute('SELECT word FROM guessed'):
+            guessed.append(row[0])
 
-    return render_template("play.html", letters=search, midletter=midletter, max=max_p, points=points, message=message)
+    return render_template("play.html", letters=search, midletter=midletter, max=max_p, points=points, message=message, correct=guessed)
 
 def find_words(abcs, midletter):
     

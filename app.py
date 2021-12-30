@@ -108,24 +108,33 @@ def generate_play(search):
             if letter not in search:
                 return generate_apology("Includes non-valid letters.")
         
-        cur.execute("SELECT * FROM list")
-        wlist = list(cur.fetchall())
-        cur.execute("SELECT * FROM guessed")
-        guessed = list(cur.fetchall())
+        wlist = []
+        guesses = []
+
+        for row in cur.execute('SELECT word FROM list'):
+            wlist.append(row[0])
+ 
+        for row in cur.execute('SELECT word FROM guessed'):
+            guesses.append(row[0])
 
         if guess in wlist:
-            if guess not in guessed:
+            if guess not in guesses:
                 cur.execute("INSERT INTO guessed (word) Values (?)", (guess,))
+                cur.execute("UPDATE search SET points = ?", (points + 1,))
                 get_db().commit()
             else:
                 return generate_apology("Already found.")
         else:
             return generate_apology("Not in word list.")
         
-        cur.execute("SELECT * FROM guessed")
-        guessed = list(cur.fetchall())
+        guessed = []
+        for row in cur.execute('SELECT word FROM guessed'):
+            guessed.append(row[0])
 
-        return render_template("play.html", letters=search, midletter=midletter, max=max_p, points=points, correct=guessed)
+        cur.execute("SELECT points FROM search")
+        point = cur.fetchone()[0]
+
+        return render_template("play.html", letters=search, midletter=midletter, max=max_p, points=point, correct=guessed)
 
     else:
         midletter, max_p = calculate_ml(search)

@@ -9,6 +9,8 @@
     <div class="container-fluid justify-conent-center">
         <form action="/solve" method="post">
             <input class="btn-outline-secondary" type="text" name="pangram" placeholder="enter letters">
+            <br>
+            <input class="btn-outline-secondary" type="text" name="midletter" placeholder="enter middle letter">
             <div class="input-group-append">
                 <button class="btn btn-outline-secondary" type="submit">solve</button>
             </div>
@@ -16,12 +18,9 @@
     </div>
 
     <div class="row">
-        <div class="column">
-            <table class="table-borderless">
-                <tr>
-                    <th>Perfect Pangrams</th>
-
-                </tr>
+        <div class="col">
+            <h3>Perfect Pangrams</h3>
+            <table class="table table-borderless">
                     {% for word in perf_pangrams %}
                 <tr>
                     <td>{{ word }}</td>
@@ -29,11 +28,9 @@
                     {% endfor %}
             </table>
         </div>
-        <div class="column">
-            <table class="table-borderless">
-                <tr>
-                    <th>Pangrams</th>
-                </tr>
+        <div class="col">
+            <h3>Pangrams</h3>
+            <table class="table table-borderless">
                     {% for word in pangrams %}
                 <tr>
                     <td>{{ word }}</td>
@@ -41,18 +38,24 @@
                     {% endfor %}
             </table>
         </div>
-        <div class="column">
-            <table class="table-borderless">
-                <tr>
-                    <th>Words</th>
+    </div>
 
-                </tr>
-                    {% for word in words %}
+    <br>
+    <h3>Words</h3>
+
+    <div class="container-fluid"></div>
+    <div class="row">
+        {% for length in words %}
+        <div class="col">
+            <table class="table table-borderless">
+                {% for word in length %}
                 <tr>
                     <td>{{ word }}</td>
                 </tr>
-                    {% endfor %}
+                {% endfor %}
             </table>
         </div>
+        {% endfor %}
+    </div>
     </div>
 {% endblock %}

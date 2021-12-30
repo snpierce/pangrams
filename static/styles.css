@@ -1,4 +1,4 @@
-a, p, .nav-link, input, .btn, p, td, th {
+a, p, .nav-link, input, .btn, p, td, th, h3 {
     font-family: "Optima", serif;
     color: lightslategray;
 }
@@ -16,11 +16,5 @@ input {
     margin: 5px;
 }
 
-.row {
-    display: flex;
-  }
-  
-.column {
-    flex: 30%;
-    padding: 5px;
-  }
+
+

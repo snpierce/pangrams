@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Play
+{% endblock %}
+
+{% block main %}
+
+    <form action="/generate" method="post">
+      <button class="btn btn-outline-secondary" type="submit">generate new</button>
+    </form>
+    <br><br>
+    
+    <h3>
+    {% for letter in letters %}
+        {{ letter }}
+    {% endfor %}
+    </h3>
+    
+    <p>Middle Letter: </p>
+    <h3>{{ midletter }}</h3>
+    <br>
+    <p>Points: {{ points }} / {{ max }}</p>
+
+    <br>
+        <form action="/generate/<search>" method="post">
+            <input class="btn-outline-secondary" type="text" name="guess" placeholder="enter guess">
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="submit">guess</button>
+            </div>
+        </form>
+    <br>
+    <p>{{ message }}</p>
+    <br>
+    {% for word in correct %}
+        <p>{{ word }}</p>
+    {% endfor %}
+
+{% endblock %}

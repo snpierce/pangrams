@@ -12,4 +12,7 @@ Functions:
 Dataset:
 - Pre-processed dictionary file to identify unique 7-letter combinations where there exists a reasonable amount of English words created using only those letters
 - Pangrams.txt contains list of letter sets that app.py selects from
-- Pangrams.sqlite is a database
+- Pangrams.sqlite is a database that stores game data
+    - The letter set
+    - User guessed words
+    - All possible valid words
